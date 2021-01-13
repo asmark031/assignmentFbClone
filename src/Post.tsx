@@ -8,10 +8,12 @@ import PostModel from './PostModel';
 export default function Post(props: RouteComponentProps<{ userId: number }>) {
 
     const [posts, setPosts] = useState([]);
+    const [filteredPosts, setFilteredPosts] = useState([]);
 
     async function getPosts() {
         let postsFromAPI = await axios.get(`http://jsonplaceholder.typicode.com/posts?userId=${props.userId}`);
         setPosts(postsFromAPI.data);
+        setFilteredPosts(postsFromAPI.data);
     }
 
     useEffect(() => {
@@ -24,7 +26,7 @@ export default function Post(props: RouteComponentProps<{ userId: number }>) {
             if (post.title.includes(query))
                 return post
         })
-        setPosts(filteredResults);
+        setFilteredPosts(filteredResults);
     }
 
     return (
@@ -46,7 +48,7 @@ export default function Post(props: RouteComponentProps<{ userId: number }>) {
             <div style={{ height: "24px" }}></div>
 
             <div>
-                {posts.map((post: PostModel) => <PostInfo key={post.id} post={post}></PostInfo>)}
+                {filteredPosts.map((post: PostModel) => <PostInfo key={post.id} post={post}></PostInfo>)}
             </div>
 
         </div>
