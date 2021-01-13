@@ -4,7 +4,6 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import PostModel from './PostModel';
 
-
 export default function Post(props: RouteComponentProps<{ userId: number }>) {
 
     const [posts, setPosts] = useState([]);
@@ -30,24 +29,21 @@ export default function Post(props: RouteComponentProps<{ userId: number }>) {
     }
 
     return (
-        <div>
-            <div style={{ height: "24px" }}></div>
+        <div style={{ display: "flex", flexDirection: "column", height: "100vh" }}>
 
-            <div style={{ display: "flex", justifyContent: "space-between" }}>
+            <div style={{ display: "flex", justifyContent: "space-between", margin: "24px 0" }}>
                 <div style={{ fontSize: "24px" }}>Post</div>
 
                 <TextField size="small" label="search" variant="outlined" onChange={(val) => search(val.target.value)} />
 
                 <div style={{ display: "flex" }}>
-                    <div><Button onClick={() => getPosts()}>Reload</Button></div>
+                    <div><Button variant="outlined" onClick={() => getPosts()}>Reload</Button></div>
                     <div style={{ width: "24px" }}></div>
-                    <div><Button onClick={() => navigate('/')}>Back</Button></div>
+                    <div><Button variant="outlined" onClick={() => navigate('/')}>Back</Button></div>
                 </div>
             </div>
 
-            <div style={{ height: "24px" }}></div>
-
-            <div>
+            <div style={{ flex: "1", overflow: "auto" }}>
                 {filteredPosts.map((post: PostModel) => <PostInfo key={post.id} post={post}></PostInfo>)}
             </div>
 

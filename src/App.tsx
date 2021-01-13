@@ -6,7 +6,7 @@ import Post from './Post';
 export default function App() {
 
   return (
-    <div style={{ height: "100vh", maxWidth: "600px", margin: "auto" }}>
+    <div style={{ maxWidth: "600px", margin: "auto" }}>
       <Router>
         <Home path="/"></Home>
         <Post path="post/:userId"></Post>

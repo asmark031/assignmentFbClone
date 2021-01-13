@@ -19,17 +19,14 @@ export default function Home(props: RouteComponentProps) {
 
     return (
 
-        <div>
-            <div style={{ height: "24px" }}></div>
+        <div style={{ display: "flex", flexDirection: "column", height: "100vh" }}>
 
-            <div style={{ display: "flex", justifyContent: "space-between" }}>
+            <div style={{ display: "flex", justifyContent: "space-between", margin: "24px 0" }}>
                 <div style={{ fontSize: "24px" }}>Users</div>
-                <div><Button onClick={() => getUsers()}>Reload</Button></div>
+                <div><Button variant="outlined" onClick={() => getUsers()}>Reload</Button></div>
             </div>
 
-            <div style={{ height: "24px" }}></div>
-
-            <div>
+            <div style={{ flex: "1", overflow: "auto" }}>
                 {users.map((user: UserModel) => <UserInfo key={user.id} user={user}></UserInfo>)}
             </div>
         </div>
